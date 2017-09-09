@@ -70,6 +70,13 @@
       <FileName>DAL\SchoolInitializer.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="ContosoUniversity.Controllers.StudentController">
+    <Position X="14.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\StudentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Enum Name="ContosoUniversity.Models.Grade">
     <Position X="8.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
