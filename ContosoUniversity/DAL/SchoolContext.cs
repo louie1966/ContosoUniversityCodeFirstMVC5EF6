@@ -9,6 +9,8 @@ namespace ContosoUniversity.DAL {
 
         public DbSet<Enrollment> Enrollments { get; set; }
 
+        public DbSet<Person> People { get; set; }
+
         public DbSet<Instructor> Instructors { get; set; }
 
         public DbSet<Student> Students { get; set; }
