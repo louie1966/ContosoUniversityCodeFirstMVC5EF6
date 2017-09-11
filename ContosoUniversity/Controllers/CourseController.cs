@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ContosoUniversity.DAL;
+using ContosoUniversity.Models;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using ContosoUniversity.DAL;
-using ContosoUniversity.Models;
-using System.Data.Entity.Infrastructure;
 
 namespace ContosoUniversity.Controllers {
     public class CourseController : Controller {
@@ -18,6 +15,18 @@ namespace ContosoUniversity.Controllers {
         public ActionResult Index() {
             var courses = db.Courses.Include(c => c.Department);
             return View(courses.ToList());
+        }
+
+        public ActionResult UpdateCourseCredits() {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UpdateCourseCredits(int? multiplier) {
+            if (multiplier != null) {
+                ViewBag.RowsAffected = db.Database.ExecuteSqlCommand("UPDATE Course SET Credits = Credits * {0}", multiplier);
+            }
+            return View();
         }
 
         // GET: Course/Details/5
