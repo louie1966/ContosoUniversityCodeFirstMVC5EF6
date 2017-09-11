@@ -19,6 +19,24 @@ namespace ContosoUniversity.Controllers {
             return View(await departments.ToListAsync());
         }
 
+        private void ValidateOneAdministratorAssignmentPerInstructor(Department department) {
+            if (department.InstructorID != null) {
+                Department duplicateDepartment = db.Departments
+                .Include("Administrator")
+                .Where(d => d.InstructorID == department.InstructorID)
+                .AsNoTracking()
+                .FirstOrDefault();
+                if (duplicateDepartment != null && duplicateDepartment.DepartmentID != department.DepartmentID) {
+                    string errorMessage = String.Format(
+                    "Instructor {0} {1} is already administrator of the {2} department.",
+                    duplicateDepartment.Administrator.FirstMidName,
+                    duplicateDepartment.Administrator.LastName,
+                    duplicateDepartment.Name);
+                    ModelState.AddModelError(string.Empty, errorMessage);
+                }
+            }
+        }
+
         // GET: Department/Details/5
         public async Task<ActionResult> Details(int? id) {
             if (id == null) {
@@ -33,8 +51,8 @@ namespace ContosoUniversity.Controllers {
             if (department == null) {
                 return HttpNotFound();
             }
-            return View(department);            
- }
+            return View(department);
+        }
 
         // GET: Department/Create
         public ActionResult Create() {
@@ -80,6 +98,11 @@ namespace ContosoUniversity.Controllers {
  [Bind(Include = "DepartmentID, Name, Budget, StartDate, RowVersion, InstructorID")]
 Department department) {
             try {
+
+                if (ModelState.IsValid) {
+                    ValidateOneAdministratorAssignmentPerInstructor(department);
+                }
+
                 if (ModelState.IsValid) {
                     db.Entry(department).State = EntityState.Modified;
                     await db.SaveChangesAsync();
