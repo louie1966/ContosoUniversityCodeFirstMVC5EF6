@@ -23,6 +23,9 @@ namespace ContosoUniversity.Models {
 
         public virtual Instructor Administrator { get; set; }
 
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
         public virtual ICollection<Course> Courses { get; set; }
     }
 }
