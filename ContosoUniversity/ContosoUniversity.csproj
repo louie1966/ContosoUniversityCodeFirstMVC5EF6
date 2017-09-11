@@ -182,6 +182,10 @@
     <Compile Include="Migrations\201709111215272_RowVersion.Designer.cs">
       <DependentUpon>201709111215272_RowVersion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709111258185_Inheritance.cs" />
+    <Compile Include="Migrations\201709111258185_Inheritance.Designer.cs">
+      <DependentUpon>201709111258185_Inheritance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Course.cs" />
@@ -296,6 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709111215272_RowVersion.resx">
       <DependentUpon>201709111215272_RowVersion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709111258185_Inheritance.resx">
+      <DependentUpon>201709111258185_Inheritance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
